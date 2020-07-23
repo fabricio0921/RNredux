@@ -2,26 +2,28 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Peoplelist from './Peoplelist';
 
-import {captalizeFirstLetter} from '../util'
+import { captalizeFirstLetter } from '../util'
 
 const PeopleListItem = props => {
-    const { people } = props;
+    const { people, navigateToDetail } = props;
     const { title, first, last } = people.name;
     return (
-        <TouchableOpacity onPress={()=>{props.navigation.navigate('Detail')}}>
+        <TouchableOpacity
+            onPress={() => { navigateToDetail({ people }); }}
+        >
             <View style={styles.line}>
-            <Image style={styles.avatar}source={{
-                uri:people.picture.thumbnail
-            }}/>
-            <Text style={styles.lineText} >
-                
-                {`${captalizeFirstLetter(title)} ${first} ${last}`}
-                
-            </Text>
-        </View>
+                <Image style={styles.avatar} source={{
+                    uri: people.picture.thumbnail
+                }} />
+                <Text style={styles.lineText} >
+
+                    {`${captalizeFirstLetter(title)} ${first} ${last}`}
+
+                </Text>
+            </View>
 
         </TouchableOpacity>
-        
+
 
     )
 }
@@ -40,16 +42,16 @@ const styles = StyleSheet.create({
     lineText: {
         fontSize: 20,
         paddingLeft: 15,
-        flex:7
+        flex: 7
 
 
     },
-    avatar:{
-        aspectRatio:1,
-        
-        flex:1,
-        marginLeft:15,
-        borderRadius:50
-        
+    avatar: {
+        aspectRatio: 1,
+
+        flex: 1,
+        marginLeft: 15,
+        borderRadius: 50
+
     }
 })

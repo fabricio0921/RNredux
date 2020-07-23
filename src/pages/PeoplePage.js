@@ -15,11 +15,11 @@ export default class PeoplePage extends React.Component {
       peoples: []
     }
 
-    
+
   }
-  componentDidMount(){
+  componentDidMount() {
     axios
-      .get('https://randomuser.me/api/?nat=br&results=6')
+      .get('https://randomuser.me/api/?nat=br&results=7')
       .then(response => {
         const { results } = response.data;
         this.setState({
@@ -29,14 +29,17 @@ export default class PeoplePage extends React.Component {
 
       })
   }
-  
+
 
   render() {
 
     return (
       <View style={styles.container}>
-        
-        <Peoplelist peoples={this.state.peoples}/>
+
+        <Peoplelist
+          peoples={this.state.peoples}
+          onPressItem={pageParams => { this.props.navigation.navigate('Detail', pageParams) }}
+        />
 
 
 
