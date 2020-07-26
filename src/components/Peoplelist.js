@@ -1,20 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import PeopleListItem from './PeopleListItem';
+import { ScrollView, FlatList } from 'react-native-gesture-handler';
 const Peoplelist = props => {
     const { peoples, onPressItem } = props;
 
-    const items = peoples.map(people =>
-        <PeopleListItem
-            key={people.name.first}
-            people={people}
-            navigateToDetail={onPressItem}
-        />
-    )
+    
     return (
-        <View style={styles.container}>
-            {items}
-        </View>
+        <FlatList
+            style={styles.container}
+            data={peoples}
+            renderItem={({ item }) => (<PeopleListItem
+                
+                people={item}
+                navigateToDetail={onPressItem}
+            />)}
+            keyExtractor={item=>item.name.first}
+        />
     )
 
 }
